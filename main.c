@@ -1,11 +1,37 @@
 #include <stdio.h>
 
-void square(int a){
-    a = a*a;
+int get_integer(void);
+int factorial(int n);
+int combination(int n, int r);
+
+int main(void)
+{
+    int n, r;
+
+    n = get_integer();
+    r = get_integer();
+
+    printf("C(%d, %d) = %d\n", n, r, combination(n, r));
+    return 0;
 }
 
-int main(){
-    int a = 2;
-    square(a);
-    printf("a=%i\n", a);
+int combination(int n, int r)
+{
+    return factorial(n) / (factorial(n - r) * factorial(r));
+}
+
+int factorial(int n)
+{
+    int res = 1;
+    for (int i = 1; i <= n; i++)
+        res *= i;
+    return res;
+}
+
+int get_integer(void)
+{
+    int value;
+    printf("Input an integer: ");
+    scanf("%d", &value);
+    return value;
 }
